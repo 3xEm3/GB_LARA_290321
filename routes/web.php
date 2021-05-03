@@ -21,13 +21,24 @@ Route::group([
     Route::get('/', [NewsController::class, 'index'])
         ->name("categories");
 
-    Route::get('/card/{id}', [NewsController::class, 'card'])
-        ->where('id', '[0-9]+')
+    Route::get('/card/{news}', [NewsController::class, 'card'])
+        ->where('news', '[0-9]+')
         ->name('card');
 
     Route::get('/{categoryId}', [NewsController::class, 'list'])
         ->where('id', '[0-9]+')
         ->name('list');
+
+    Route::get('/source/{sourceId}', [NewsController::class, 'source'])
+        ->where('id', '[0-9]+')
+        ->name('source');
+
+    Route::any('/create/create', [NewsController::class, 'create'])
+        ->name('create');
+
+
+    Route::post('/create/save', [NewsController::class, 'save'])
+        ->name('save');
 
 });
 
